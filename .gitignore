@@ -1,0 +1,12 @@
+# Folders
+###################
+bin/
+node_modules/
+
+# Packages #
+###################
+*.bna
+*.card
+*.zip
+*.tar
+

@@ -1,0 +1,140 @@
+rule historianAccess{
+  description: "Only allow members to read historian records referencing transactions they submitted."
+  participant(p): "org.ehr.network.Patient"
+  operation: READ
+  resource(r): "org.hyperledger.composer.system.HistorianRecord"
+  condition: (r.participantInvoking.getIdentifier() != p.getIdentifier())
+  action: DENY
+}
+
+rule NetworkAdminUser {
+    description: "Grant business network administrators full access to user resources"
+    participant: "org.hyperledger.composer.system.NetworkAdmin"
+    operation: ALL
+    resource: "**"
+    action: ALLOW
+}
+
+rule NetworkAdminSystem {
+    description: "Grant business network administrators full access to system resources"
+    participant: "org.hyperledger.composer.system.NetworkAdmin"
+    operation: ALL
+    resource: "org.hyperledger.composer.system.**"
+    action: ALLOW
+}
+
+rule RP1a_PatientCanGrantPermissionsOnly {
+    description: "Only patients can grant permissions"
+    participant: "org.ehr.network.Patient"
+    operation: ALL
+  	resource: "org.ehr.network.GrantPermission"
+    action: ALLOW
+}
+
+rule RP1b_PatientCanDenyPermissionsOnly {
+    description: "Only Patients can deny permissions"
+    participant: "org.ehr.network.Patient"
+    operation: ALL
+  	resource: "org.ehr.network.DenyPermission"
+    action: ALLOW
+}
+
+rule RP2a_PatientCannotCreateMedicalRecords {
+    description: "Patients cannot create medical records"
+    participant: "org.ehr.network.Patient"
+    operation: CREATE
+  	resource: "org.ehr.network.GivePrescription"
+    action: DENY
+}
+
+rule RP3a_CaregiverCannotReadWithoutPermission {
+    description: "Doctors can read patient data if they have their permission"
+    participant(p): "org.ehr.network.Caregiver"
+    operation: READ
+    resource(r): "org.ehr.network.Patient"
+  	condition: (p.permissions.some( function(e) { return (e.patient_id === r.id && e.permissionType === "READ") ; } ))
+    action: ALLOW
+}
+
+rule RP3b_CaregiverCannotUpdateWithoutPermission {
+    description: "Doctors can read patient data if they have their permission"
+    participant(p): "org.ehr.network.Caregiver"
+    operation: UPDATE
+    resource(r): "org.ehr.network.Patient"
+  	condition: (p.permissions.some( function(e) { return (e.patient_id === r.id && e.permissionType === "UPDATE") ; } ))
+    action: ALLOW
+}
+
+rule RP3c_CaregiverCannotReadWithoutPermission {
+    description: "Doctors cannot read patient data without their permission"
+    participant: "org.ehr.network.Caregiver"
+    operation: READ, UPDATE
+    resource: "org.ehr.network.Patient"
+    action: DENY
+}
+
+rule RP4_CaregiverCanCreateMedicalRecordsOnly {
+    description: "Doctors can create medical transactions"
+    participant: "org.ehr.network.Caregiver"
+    operation: CREATE
+    resource: "org.ehr.network.Prescription"
+    action: ALLOW
+}
+
+rule RP5a_CaregiverCanReadMedicalRecordsWithPermission {
+    description: "Doctors can read prescriptions if they have read permission from the patient"
+    participant(p): "org.ehr.network.Caregiver"
+    operation: READ
+    resource(r): "org.ehr.network.Prescription"
+    condition: (p.permissions.some( function(e) { return (e.patient_id === r.patient.id && e.permissionType === "READ") ; } ))
+    action: ALLOW
+}
+
+rule RP5b_CaregiverCanUpdateMedicalRecordsWithPermission {
+    description: "Doctors can read prescriptions if they have read permission from the patient"
+    participant(p): "org.ehr.network.Caregiver"
+    operation: UPDATE
+    resource(r): "org.ehr.network.Prescription"
+    condition: (p.permissions.some( function(e) { return (e.patient_id === r.patient.id && e.permissionType === "UPDATE") ; } ))
+    action: ALLOW
+}
+
+rule RP5c_CaregiverCanReadMedicalRecordsWithPermission {
+    description: "Doctors cannot read/update prescriptions without the permission from the patient"
+    participant: "org.ehr.network.Caregiver"
+    operation: READ, UPDATE
+    resource: "org.ehr.network.Prescription"
+    action: DENY
+}
+
+rule DefaultGrantPermission{
+    description: "Participants cannot grant permissions"
+    participant: "ANY"
+    operation: ALL
+  	resource: "org.ehr.network.GrantPermission"
+    action: DENY
+}
+
+rule DefaultDenyPermission {
+    description: "Participants cannot deny permissions"
+    participant: "ANY"
+    operation: ALL
+  	resource: "org.ehr.network.DenyPermission"
+    action: DENY
+}
+
+rule Default {
+    description: "Allow all participants access to all resources"
+    participant: "ANY"
+    operation: ALL
+    resource: "org.ehr.network.*"
+    action: ALLOW
+}
+
+rule SystemACL {
+  description:  "System ACL to permit all access"
+  participant: "ANY"
+  operation: ALL
+  resource: "org.hyperledger.composer.system.**"
+  action: ALLOW
+}

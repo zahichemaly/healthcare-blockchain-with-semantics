@@ -1,0 +1,7 @@
+// get patients according to their allergic drug
+query getPatientsByAllergy{
+description: "Get all patients according to their allergic drug"
+statement:
+      SELECT org.ehr.network.Patient
+      WHERE (allergies CONTAINS _$drug_resource)
+}

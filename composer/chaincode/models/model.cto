@@ -1,0 +1,108 @@
+namespace org.ehr.network
+
+abstract participant Individual identified by id {
+    o String id
+    o String firstName
+    o String lastName
+    o String dob 
+    o Address address 
+    o Gender gender
+}
+
+concept Address {
+  o String country
+  o String city 
+  o String state 
+  o String zip 
+}
+
+enum Gender{
+    o MALE
+    o FEMALE
+}
+
+participant Patient extends Individual {
+    o String language
+    o String religion
+    o String marital_status
+    o String ethnicity
+    --> Drug[] allergies
+}
+
+
+participant Caregiver extends Individual {
+    o Role role
+    o Permission[] permissions
+}
+
+enum Role {
+    o DOCTOR
+    o PHARMACIST
+    o RESIDENT
+    o RESEARCH_ASSISTANT
+    o DIETICIAN
+}
+
+concept Permission {
+    o String patient_id
+    o PermissionType permissionType
+}
+
+enum PermissionType {
+    o READ
+    o UPDATE
+}
+
+abstract asset MedicalRecord identified by id {
+    o String id
+    o DateTime startDate
+    o DateTime endDate
+    o String description
+    --> Patient patient
+}
+  
+asset Prescription extends MedicalRecord {
+    o String dose_val
+    --> Drug drug
+}
+
+asset Drug identified by id {
+   o String id
+   o String name
+   o Integer drug_sevirity range = [0, 5]
+   o String prod_strength
+   o String description
+}
+
+
+transaction GivePrescription {
+    // MedicalRecord Fields
+    o DateTime startDate
+    o DateTime endDate
+    o String description
+    --> Patient patient
+    // Prescription Fields
+    o String dose_val
+    --> Drug drug
+}
+
+transaction AddAllergy {
+  --> Patient patient
+  --> Drug drug
+}
+
+transaction RemoveAllergy {
+  --> Patient patient
+  --> Drug drug
+}
+
+// permission transactions
+transaction GrantPermission{
+  	o PermissionType permissionType
+    --> Caregiver caregiver
+}
+  
+transaction DenyPermission{
+  	o PermissionType permissionType
+    --> Caregiver caregiver
+}

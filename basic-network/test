@@ -1,0 +1,3 @@
+2019-05-17 12:52:37.972 UTC [chaincodeCmd] InitCmdFactory -> INFO 001 Retrieved channel (mychannel) orderer endpoint: orderer.example.com:7050
+Error: endorsement failure during invoke. response: status:500 message:"transaction returned with failure: Prescription has one or more blocking effects to the prescribed medicine Depakene" 
+
