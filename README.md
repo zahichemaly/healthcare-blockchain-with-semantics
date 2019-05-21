@@ -1,8 +1,9 @@
 # Healthcare blockchain with semantics
 This project is about implementing a Healthcare System that takes advantage of semantics for a better patient treatment.
+
 2 solutions are proposed:
 
-- A secure Healthcare blockchain sytem using Hyperleder Composer
+- A secure Healthcare blockchain sytem using Hyperleder Compose
 - A semantics-based Healthcare blockchain system using Hyperledger Fabric, Java and GraphDB.
 
 ## Prerequisites
