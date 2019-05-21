@@ -1,4 +1,9 @@
 # Healthcare blockchain with semantics
+This project is about implementing a Healthcare System that takes advantage of semantics for a better patient treatment.
+2 solutions are proposed:
+
+- A secure Healthcare blockchain sytem using Hyperleder Composer
+- A semantics-based Healthcare blockchain system using Hyperledger Fabric, Java and GraphDB.
 
 ## Prerequisites
 
@@ -9,7 +14,7 @@ The script will install the following:
 - **Docker-Compose Version 1.8**
 - **Node 8.9**
 - **npm v5.x**
-- **git 2.9.x or higher**
+- **git 2.9.x**
 - **Python 2.7.x**
 
 After that, download the **binaries** and the **Fabric 1.4.1** docker images by running `./setup.sh`
