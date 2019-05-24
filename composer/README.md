@@ -1,52 +1,70 @@
 ## Healthcare System using Hyperledger Composer
 
-This project contains:
-- A Hyperledger Composer Business Network for Healthcare System (i.e: chaincode)
-- A Single organization blockchain deployement configuration
-- A Multi-organization blockchain deployement configuration
-- A REST API service to interact with the Business Network
-- *in progress* A client side Angular 7 application that consumes the REST API service
-
 ### Prerequisites
 
-To run Hyperledger Composer and Hyperledger Fabric, we recommend you have at least 4Gb of memory.
+Make sure you installed all the necessary Fabric docker images by following the  [installation manual](https://hyperledger.github.io/composer/latest/installing/installing-index.html).
+The `/bin` folder containing the binaries should be located in the root directory of the repository, outside `/composer`.
 
-The following are prerequisites for installing the required development tools:
+### Project structure
 
-- **Operating Systems:** Ubuntu Linux 14.04 / 16.04 LTS (both 64-bit), or Mac OS 10.12
-- **Docker Engine:** Version 17.03 or higher
-- **Docker-Compose:** Version 1.8 or higher
-- **Node: 8.9 or higher** *(note version 9 and higher is not supported)*
-- **npm: v5.x**
-- **git: 2.9.x or higher**
-- **Python: 2.7.x**
+* `/chaincode` contains the Business Network Definition which will be deployed via `deploy.sh`. This script will also generate the `package.json` file.
+* `crypto-config` contains all the cryptographic materials generated when running `start.sh`.
 
-1. You can run this command to fetch all the prerequisites above
+### Starting the network
 
-        ./prereqs-ubuntu.sh
+1. Start the Fabric containers:
 
-2. Install the CLI tools
+        ./start.sh
 
-        ./cli-tools.sh
-
-3. Finally, install Hyperledger Fabric
-
-        export FABRIC_VERSION=hlfv12
-
-        ./downloadFabric.sh
-
-### Running Fabric for the first time (Single organization)
-
-1. Start Fabric
-
-        ./startFabric.sh
-
-2. Create a Peer Admin Card
+2. Create the Peer Administrator card
 
         ./createPeerAdminCard.sh
 
-3. Start the Composer Playground and navigate to [http://localhost:8080/login](http://localhost:8080/login)
+3. Finally, deploy the chaincode
 
-        composer-playground
+        ./deploy.sh
+		
+    This will also create an Admin card that you can use to access the blockchain network.
+
+### Stopping the network
+
+1. Stop the running Fabric containers
+
+        ./stop.sh
+
+2. If needed, you can completely remove the untagged containers, including the dev-containers
+
+		./teardown.sh
+		
+### Exposing the network to a REST API and generating the Angular application
+
+1. Start the REST API server and navigate to [http://localhost:3000/explorer](http://localhost:3000/explorer)
+
+        ./rest.sh
+
+2. Generate the Angular 4 application using Yeoman and navigate to [http://localhost:4200/](http://localhost:4200/)
+
+		yo hyperledger-composer:angular
 
         
+### Other useful commands
+
+*	Show all the Business Network Cards
+		
+		composer card list
+		
+*	Delete a specific card
+
+		composer card delete <card_name>
+		
+*	Show all containers including hidden ones
+
+		docker ps -aq
+		
+*	Show all docker images
+
+		docker images
+		
+*	Manually delete a docker container
+
+		docker container rm <container_name_or_id>

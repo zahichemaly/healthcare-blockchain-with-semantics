@@ -1,0 +1,210 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns="http://www.semanticweb.org/healthcare/ontology#"
+     xml:base="http://www.semanticweb.org/healthcare/ontology"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+    <owl:Ontology rdf:about="http://www.semanticweb.org/healthcare/ontology"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/healthcare/ontology#hasActiveSubstance -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/healthcare/ontology#hasActiveSubstance">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/healthcare/ontology#Drug"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/healthcare/ontology#MainComponent"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/healthcare/ontology#Drug -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/healthcare/ontology#Drug">
+        <owl:disjointWith rdf:resource="http://www.semanticweb.org/healthcare/ontology#MainComponent"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/healthcare/ontology#MainComponent -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/healthcare/ontology#MainComponent"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Individuals
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/healthcare/ontology#Advil -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/healthcare/ontology#Advil">
+        <rdf:type rdf:resource="http://www.semanticweb.org/healthcare/ontology#Drug"/>
+        <hasActiveSubstance rdf:resource="http://www.semanticweb.org/healthcare/ontology#Ibuprofene"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/healthcare/ontology#Amlodipine -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/healthcare/ontology#Amlodipine">
+        <rdf:type rdf:resource="http://www.semanticweb.org/healthcare/ontology#Drug"/>
+        <hasActiveSubstance rdf:resource="http://www.semanticweb.org/healthcare/ontology#Ramipril"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/healthcare/ontology#Astepro -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/healthcare/ontology#Astepro">
+        <rdf:type rdf:resource="http://www.semanticweb.org/healthcare/ontology#Drug"/>
+        <hasActiveSubstance rdf:resource="http://www.semanticweb.org/healthcare/ontology#Azelastine"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/healthcare/ontology#Atorvastatin -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/healthcare/ontology#Atorvastatin">
+        <rdf:type rdf:resource="http://www.semanticweb.org/healthcare/ontology#Drug"/>
+        <hasActiveSubstance rdf:resource="http://www.semanticweb.org/healthcare/ontology#Ramipril"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/healthcare/ontology#Azelastine -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/healthcare/ontology#Azelastine">
+        <rdf:type rdf:resource="http://www.semanticweb.org/healthcare/ontology#MainComponent"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/healthcare/ontology#Bisoprolol -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/healthcare/ontology#Bisoprolol">
+        <rdf:type rdf:resource="http://www.semanticweb.org/healthcare/ontology#Drug"/>
+        <hasActiveSubstance rdf:resource="http://www.semanticweb.org/healthcare/ontology#Ramipril"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/healthcare/ontology#Depakene -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/healthcare/ontology#Depakene">
+        <rdf:type rdf:resource="http://www.semanticweb.org/healthcare/ontology#Drug"/>
+        <hasActiveSubstance rdf:resource="http://www.semanticweb.org/healthcare/ontology#Valproic"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/healthcare/ontology#Depakote -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/healthcare/ontology#Depakote">
+        <rdf:type rdf:resource="http://www.semanticweb.org/healthcare/ontology#Drug"/>
+        <hasActiveSubstance rdf:resource="http://www.semanticweb.org/healthcare/ontology#Valproic"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/healthcare/ontology#Ibuprofene -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/healthcare/ontology#Ibuprofene">
+        <rdf:type rdf:resource="http://www.semanticweb.org/healthcare/ontology#MainComponent"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/healthcare/ontology#Motrin -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/healthcare/ontology#Motrin">
+        <rdf:type rdf:resource="http://www.semanticweb.org/healthcare/ontology#Drug"/>
+        <hasActiveSubstance rdf:resource="http://www.semanticweb.org/healthcare/ontology#Ibuprofene"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/healthcare/ontology#Optivar -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/healthcare/ontology#Optivar">
+        <rdf:type rdf:resource="http://www.semanticweb.org/healthcare/ontology#Drug"/>
+        <hasActiveSubstance rdf:resource="http://www.semanticweb.org/healthcare/ontology#Azelastine"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/healthcare/ontology#Panadol -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/healthcare/ontology#Panadol">
+        <rdf:type rdf:resource="http://www.semanticweb.org/healthcare/ontology#Drug"/>
+        <hasActiveSubstance rdf:resource="http://www.semanticweb.org/healthcare/ontology#Paracetamol"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/healthcare/ontology#Paracetamol -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/healthcare/ontology#Paracetamol">
+        <rdf:type rdf:resource="http://www.semanticweb.org/healthcare/ontology#MainComponent"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/healthcare/ontology#Ramipril -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/healthcare/ontology#Ramipril">
+        <rdf:type rdf:resource="http://www.semanticweb.org/healthcare/ontology#MainComponent"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/healthcare/ontology#Tylenol -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/healthcare/ontology#Tylenol">
+        <rdf:type rdf:resource="http://www.semanticweb.org/healthcare/ontology#Drug"/>
+        <hasActiveSubstance rdf:resource="http://www.semanticweb.org/healthcare/ontology#Paracetamol"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/healthcare/ontology#Valproic -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/healthcare/ontology#Valproic">
+        <rdf:type rdf:resource="http://www.semanticweb.org/healthcare/ontology#MainComponent"/>
+    </owl:NamedIndividual>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi -->
+

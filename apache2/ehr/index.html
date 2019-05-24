@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>Healthcare Blockchain System</title>
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
+  <!-- Bootstrap core CSS -->
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <!-- Material Design Bootstrap -->
+  <link href="css/mdb.min.css" rel="stylesheet">
+  <link href="css/toastr.css" rel="stylesheet">
+  <!-- Your custom styles (optional) -->
+  <link href="css/style.css" rel="stylesheet">
+</head>
+
+<body>
+  <!--Navbar-->
+  <nav class="navbar navbar-expand-lg navbar-dark indigo">
+    <!-- Navbar brand -->
+    <a class="navbar-brand" href="#"><i class="fas fa-plus-square"></i>
+      Healthcare Blockchain System</a>
+    <!-- Collapse button -->
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav"
+      aria-controls="basicExampleNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <!--Dropdown primary-->
+    <div class="dropdown ml-auto">
+      <!--Trigger-->
+      <a class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown"
+        aria-haspopup="true" aria-expanded="false">Transactions</a>
+      <!--Menu-->
+      <div class="dropdown-menu dropdown-primary">
+        <a class="dropdown-item" data-toggle="modal" data-target="#createPatientDialog"><i class="fas fa-user-plus"></i>
+          Create a patient</a>
+        <a class="dropdown-item" data-toggle="modal" data-target="#createAllergyDialog"><i class="fas fa-allergies"></i>
+          Add allergy</a>
+        <a class="dropdown-item" data-toggle="modal" data-target="#createPrescriptionDialog"><i
+            class="fas fa-notes-medical"></i>
+          Submit prescription</a>
+      </div>
+    </div>
+    <!--/Dropdown primary-->
+
+  </nav>
+  <!--/.Navbar-->
+
+  <!-- Start your project here-->
+  <!-- Table -->
+  <div class="container">
+    <div class="row">
+      <div class="col-md-10 col-md-offset-1">
+        <div class="panel panel-default panel-table">
+          <div class="panel-heading">
+            <div class="row">
+              <div class="col col-xs-6">
+                <br />
+                <br />
+                <h3 class="panel-title">List of patients</h3>
+              </div>
+            </div>
+          </div>
+          <div class="panel-body">
+            <table class="table table-hover" id="records_table">
+              <thead>
+                <tr>
+                  <th class="hidden-xs">#ID</th>
+                  <th>First Name</th>
+                  <th>Last Name</th>
+                  <th>Date of Birth</th>
+                  <th>Allergies</th>
+                  <th>Prescriptions</th>
+                </tr>
+              </thead>
+              <tbody id="records_body">
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Dialogs forms -->
+  <div class="modal fade" id="createPatientDialog" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header text-center">
+          <h4 class="modal-title w-100 font-weight-bold"><i class="fas fa-user-plus"></i> Create a patient</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <form id="createPatientForm" class="form" action="" method="post" autocomplete="off">
+          <div class="modal-body mx-3">
+            <div class="md-form mb-6">
+              <input type="text" id="form1" class="form-control validate" name="id" required>
+              <label data-success="&#10004;" for="form1">ID</label>
+            </div>
+
+            <div class="md-form mb-6">
+              <input type="text" id="form2" class="form-control validate" name="firstName" required>
+              <label data-success="&#10004;" for="form2">First name</label>
+            </div>
+
+            <div class="md-form mb-6">
+              <input type="text" id="form3" class="form-control validate" name="lastName" required>
+              <label data-success="&#10004;" for="form3">Last name</label>
+            </div>
+
+            <div class="md-form mb-6">
+              <input type="date" id="form4" class="form-control validate" name="dateofbirth" required>
+              <label data-success="&#10004;" for="form4">Date of Birth</label>
+            </div>
+
+          </div>
+          <div class="modal-footer d-flex justify-content-center">
+            <button id="createPatientButton" class="btn btn-indigo" type="button">Submit</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="createAllergyDialog" tabindex="-1" role="dialog" aria-labelledby="myModalLabel2"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header text-center">
+          <h4 class="modal-title w-100 font-weight-bold"><i class="fas fa-allergies"></i> Add an allergy</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <form id="createAllergyForm" class="form" action="" method="post" autocomplete="off">
+          <div class="modal-body mx-3">
+            <div class="md-form mb-6">
+              <input type="text" id="form4" class="form-control validate" name="patientId" required>
+              <label data-success="&#10004;" for="form4"><i class="fas fa-user"></i>
+                ID of patient</label>
+            </div>
+
+            <div class="md-form mb-5">
+              <input type="text" id="form6" class="form-control validate" name="allergyName" required>
+              <label data-success="&#10004;" for="form6"><i class="fas fa-allergies"></i>
+                Allergy </label>
+            </div>
+
+          </div>
+          <div class="modal-footer d-flex justify-content-center">
+            <button id="createAllergyButton" class="btn btn-indigo" type="button">Submit</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="createPrescriptionDialog" tabindex="-1" role="dialog" aria-labelledby="myModalLabel3"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header text-center">
+          <h4 class="modal-title w-100 font-weight-bold"><i class="fas fa-notes-medical"></i> Create a prescription</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <form id="createPrescriptionForm" class="form" action="" method="post" autocomplete="off">
+          <div class="modal-body mx-3">
+            <div class="md-form mb-6">              
+              <input type="text" id="form4" class="form-control validate" name="prescPatientId" required>
+              <label data-success="&#10004;" for="form4"><i class="fas fa-user"></i>
+                ID of patient</label>
+            </div>
+
+            <div class="md-form mb-5">
+              <input type="text" id="form6" class="form-control validate" name="drugName" required>
+              <label data-success="&#10004;" for="form6"><i class="fas fa-capsules"></i>
+                Drug name</label>
+            </div>
+
+            <div class="md-form mb-4">
+              <input type="text" id="form7" class="form-control validate" name="dosage" required>
+              <label data-success="&#10004;" for="form7"><i class="fas fa-fill-drip"></i>
+                Dosage</label>
+            </div>
+          </div>
+          <div class="modal-footer d-flex justify-content-center">
+            <button id="createPrescriptionButton" class="btn btn-indigo" type="button">Submit</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <!-- /Start your project here-->
+
+  <!-- SCRIPTS -->
+  <!-- JQuery -->
+  <script type="text/javascript" src="js/jquery-3.4.0.min.js"></script>
+  <!-- Bootstrap tooltips -->
+  <script type="text/javascript" src="js/popper.min.js"></script>
+  <!-- Bootstrap core JavaScript -->
+  <script type="text/javascript" src="js/bootstrap.min.js"></script>
+  <!-- MDB core JavaScript -->
+  <script type="text/javascript" src="js/mdb.min.js"></script>
+  <script type="text/javascript" src="js/toastr.min.js"></script>
+  <script type="text/javascript" src="js/script.js"></script>
+</body>
+
+</html>
