@@ -4,9 +4,11 @@
 
 You will need 2 images of any distro. We recommend using Ubuntu 16.04.
 
-**[ PC1 ]** instruction to be executed on the first machine
-**[ PC2 ]** instruction to be executed on the second machine.
-**[ PC1 - PC2 ]** instruction to be executed on both machines
+**[ PC1 ]** ➜ instruction to be executed on the first machine
+
+**[ PC2 ]** ➜ instruction to be executed on the second machine
+
+**[ PC1 - PC2 ]** ➜ instruction to be executed on both machines
 
 ### Setting up the chaincode
 
